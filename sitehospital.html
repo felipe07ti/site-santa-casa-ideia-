@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hospital Santa Casa de Bom Jardim - RJ</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f8f7;
+    color:#333;
+    line-height:1.7;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
+header{
+    background:#fff;
+    position:sticky;
+    top:0;
+    z-index:999;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+.menu{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 0;
+}
+
+.logo h2{
+    color:#e30613;
+}
+
+nav{
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#333;
+    font-weight:bold;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#e30613;
+}
+
+.hero{
+    min-height:600px;
+    background:
+        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+        url("https://images.unsplash.com/photo-1586773860418-d37222d8fce3");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+}
+
+.hero-texto{
+    margin-left:8%;
+    max-width:700px;
+    color:#fff;
+}
+
+.hero h1{
+    font-size:60px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:20px;
+    margin-bottom:35px;
+}
+
+.botao,
+.botao2{
+    display:inline-block;
+    color:#fff;
+    text-decoration:none;
+    padding:15px 30px;
+    border-radius:10px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.botao{
+    background:#e30613;
+    margin-right:15px;
+}
+
+.botao:hover{
+    background:#0f9d58;
+}
+
+.botao2{
+    background:#0f9d58;
+}
+
+.botao2:hover{
+    background:#e30613;
+}
+
+section{
+    padding:80px 0;
+}
+
+section h2{
+    text-align:center;
+    font-size:40px;
+    color:#e30613;
+    margin-bottom:50px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#fff;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card h3{
+    color:#e30613;
+    margin-bottom:15px;
+}
+
+.card i{
+    font-size:40px;
+    color:#0f9d58;
+    margin-bottom:20px;
+}
+
+.indicadores,
+.quem-somos,
+.acessos,
+.noticias,
+.comunicados,
+.dicas,
+.certificacoes,
+.eventos,
+.projetos,
+.fotos-atual,
+.fotos-antigas,
+.visitas,
+.portal,
+.feedbacks{
+    background:#fff;
+}
+
+.historia,
+.reforma,
+.localizacao,
+.doacoes,
+.contato,
+.orientacoes,
+.ajudar{
+    background:#f8fbfa;
+}
+
+.grid-contato{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:start;
+}
+
+.info-contato{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.formulario{
+    background:#fff;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.formulario h3{
+    color:#fa0505;
+    margin-bottom:25px;
+    text-align:left;
+    font-size:28px;
+}
+
+.campo{
+    margin-bottom:20px;
+}
+
+.campo label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+.campo input,
+.campo textarea{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    outline:none;
+    font-size:15px;
+}
+
+.campo input:focus,
+.campo textarea:focus{
+    border-color:#fc0303;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    background:#f70202;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#010a06;
+}
+
+.aviso-acessibilidade{
+    margin-top:20px;
+    padding:18px;
+    display:flex;
+    gap:15px;
+    align-items:flex-start;
+    background:#e8f7ef;
+    border-left:4px solid #fc0404;
+    border-radius:10px;
+}
+
+.aviso-acessibilidade i{
+    color:#fd0000;
+    font-size:24px;
+}
+
+.aviso-acessibilidade strong{
+    color:#f70404;
+    display:block;
+    margin-bottom:5px;
+}
+
+.botoes-flutuantes{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    z-index:9999;
+}
+
+.botao-flutuante{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    text-decoration:none;
+    font-size:28px;
+    box-shadow:0 5px 15px rgba(0,0,0,.25);
+    transition:.3s;
+}
+
+.botao-flutuante:hover{
+    transform:translateY(-5px) scale(1.08);
+}
+
+.whatsapp{background:#25D366;}
+.chat{background:#f70303;}
+
+.chat-popup{
+    display:none;
+    flex-direction:column;
+    position:fixed;
+    right:100px;
+    bottom:25px;
+    width:320px;
+    height:420px;
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,.2);
+    z-index:9999;
+}
+
+.chat-header{
+    background:#0f9d58;
+    color:#fff;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    font-weight:bold;
+}
+
+.chat-header span{
+    cursor:pointer;
+}
+
+.chat-body{
+    flex:1;
+    padding:20px;
+    overflow-y:auto;
+}
+
+.mensagem{
+    background:#f3f3f3;
+    padding:12px;
+    border-radius:10px;
+    line-height:1.5;
+}
+
+.chat-footer{
+    display:flex;
+    gap:10px;
+    padding:15px;
+    border-top:1px solid #eee;
+}
+
+.chat-footer input{
+    flex:1;
+    padding:10px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.chat-footer button{
+    width:auto;
+    padding:10px 15px;
+}
+
+footer{
+    background:#111;
+    color:#fff;
+    text-align:center;
+    padding:60px 20px;
+}
+
+footer h3{
+    color:#e30613;
+    margin-bottom:20px;
+}
+
+@media(max-width:900px){
+    .menu{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    nav{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero{
+        min-height:auto;
+        padding:120px 20px;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .hero-texto{
+        margin:0;
+    }
+
+    .botao,
+    .botao2{
+        display:block;
+        margin-bottom:15px;
+        text-align:center;
+    }
+
+    .grid-contato{
+        grid-template-columns:1fr;
+    }
+
+    .info-contato{
+        grid-template-columns:1fr;
+    }
+
+    .chat-popup{
+        right:15px;
+        left:15px;
+        width:auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container menu">
+        <div class="logo">
+            <h2>Santa Casa Bom Jardim</h2>
+        </div>
+        <nav>
+            <a href="#">Início</a>
+            <a href="#">Sobre</a>
+            <a href="#">Notícias</a>
+            <a href="#">Transparência</a>
+            <a href="#">Contato</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-texto">
+        <h1>Hospital Santa Casa de Bom Jardim</h1>
+        <p>Excelência, humanização e cuidado com a vida.</p>
+        <a href="#" class="botao">Agendar Consulta</a>
+        <a href="#" class="botao2">Resultado de Exames</a>
+    </div>
+</section>
+
+<section class="indicadores">
+    <div class="container">
+        <h2>Pequenos Indicadores</h2>
+        <div class="cards">
+            <div class="card"><h2>150 mil+</h2><p>Pacientes Atendidos</p></div>
+            <div class="card"><h2>80</h2><p>Leitos Hospitalares</p></div>
+            <div class="card"><h2>200+</h2><p>Profissionais</p></div>
+            <div class="card"><h2>24h</h2><p>Emergência</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="historia">
+    <div class="container">
+        <h2>História Institucional</h2>
+        <div class="card">
+            <p>A Santa Casa de Misericórdia de Bom Jardim tem uma trajetória dedicada ao cuidado com a saúde da população, com compromisso social, acolhimento e atendimento humanizado.</p>
+        </div>
+    </div>
+</section>
+
+<section class="quem-somos">
+    <div class="container">
+        <h2>Quem Somos</h2>
+        <div class="card">
+            <p>Somos uma instituição hospitalar comprometida em oferecer assistência de qualidade, com foco em segurança, respeito e valorização da vida.</p>
+        </div>
+    </div>
+</section>
+
+<section class="missao-valores">
+    <div class="container">
+        <h2>Missão e Valores</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Missão</h3>
+                <p>Prestar atendimento em saúde com excelência, ética, responsabilidade e humanização.</p>
+            </div>
+            <div class="card">
+                <h3>Valores</h3>
+                <p>Respeito, acolhimento, compromisso, transparência, qualidade e solidariedade.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="reforma">
+    <div class="container">
+        <h2>Fotos da Reforma</h2>
+        <div class="cards">
+            <div class="card"><p>Espaço para foto da reforma 1</p></div>
+            <div class="card"><p>Espaço para foto da reforma 2</p></div>
+            <div class="card"><p>Espaço para foto da reforma 3</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="acessos">
+    <div class="container">
+        <h2>Acesso para Exames e Consultas</h2>
+        <div class="cards">
+            <div class="card">
+                <i class="fa-solid fa-file-medical"></i>
+                <h3>Exames</h3>
+                <p>Acesse seus resultados com praticidade e segurança.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-user-doctor"></i>
+                <h3>Consultas</h3>
+                <p>Agende seu atendimento de forma rápida e simples.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="noticias">
+    <div class="container">
+        <h2>Pequenas Notícias</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Campanha de Vacinação</h3>
+                <p>A vacinação continua disponível para a população.</p>
+            </div>
+            <div class="card">
+                <h3>Mutirão de Atendimento</h3>
+                <p>Ações especiais para ampliar o acesso aos serviços de saúde.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="comunicados">
+    <div class="container">
+        <h2>Comunicados</h2>
+        <div class="card">
+            <p>Aqui serão publicados avisos importantes, mudanças de atendimento e informações oficiais da instituição.</p>
+        </div>
+    </div>
+</section>
+
+<section class="dicas">
+    <div class="container">
+        <h2>Dicas de Saúde</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Hidratação</h3>
+                <p>Beba água ao longo do dia para manter o corpo saudável.</p>
+            </div>
+            <div class="card">
+                <h3>Alimentação</h3>
+                <p>Prefira refeições equilibradas e ricas em nutrientes.</p>
+            </div>
+            <div class="card">
+                <h3>Sono</h3>
+                <p>Durma bem para favorecer a recuperação do organismo.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="certificacoes">
+    <div class="container">
+        <h2>Certificações Médicas</h2>
+        <div class="card">
+            <p>Espaço reservado para exibir selos, registros e certificações da instituição.</p>
+        </div>
+    </div>
+</section>
+
+<section class="localizacao">
+    <div class="container">
+        <h2>Endereço Completo</h2>
+        <div class="card">
+            <p>Rua João Figueira Rodrigues, 36, Centro, Bom Jardim - RJ, CEP 28660-000.</p>
+        </div>
+    </div>
+</section>
+
+<section class="eventos">
+    <div class="container">
+        <h2>Eventos</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Evento 1</h3>
+                <p>Descrição breve do evento.</p>
+            </div>
+            <div class="card">
+                <h3>Evento 2</h3>
+                <p>Descrição breve do evento.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="localizacao">
+    <div class="container">
+        <h2>Localização Resumida</h2>
+        <div class="card">
+            <p>Centro de Bom Jardim, RJ.</p>
+        </div>
+    </div>
+</section>
+
+<section class="projetos">
+    <div class="container">
+        <h2>Projetos e Campanhas</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Projeto 1</h3>
+                <p>Descrição breve do projeto.</p>
+            </div>
+            <div class="card">
+                <h3>Campanha 1</h3>
+                <p>Descrição breve da campanha.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="horario-funcionamento">
+    <div class="container">
+        <h2>Horário de Funcionamento</h2>
+        <div class="card">
+            <p>Segunda a Sexta: 07h às 17h<br>Sábado: 07h às 12h<br>Emergência: 24 horas</p>
+        </div>
+    </div>
+</section>
+
+<section class="fotos-atual">
+    <div class="container">
+        <h2>Fotos Atuais</h2>
+        <div class="cards">
+            <div class="card"><p>Foto atual 1</p></div>
+            <div class="card"><p>Foto atual 2</p></div>
+            <div class="card"><p>Foto atual 3</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="trabalhe">
+    <div class="container">
+        <h2>Trabalhe Conosco</h2>
+        <p>Faça parte da nossa equipe e contribua com uma saúde mais humanizada.</p>
+        <br>
+        <a href="#" class="botao">Enviar Currículo</a>
+    </div>
+</section>
+
+<section class="fotos-antigas">
+    <div class="container">
+        <h2>Fotos Antigas</h2>
+        <div class="cards">
+            <div class="card"><p>Foto antiga 1</p></div>
+            <div class="card"><p>Foto antiga 2</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="contato">
+    <div class="container">
+        <h2>Ouvidoria e Fale Conosco</h2>
+        <div class="grid-contato">
+            <div class="info-contato">
+                <div class="card">
+                    <i class="fa-solid fa-phone"></i>
+                    <h3>Recepção</h3>
+                    <p>+55 22 98843-8053</p>
+                    <p>(22) 2032-0222</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h3>E-mail</h3>
+                    <p>contato@hospitalsantacasa.com.br</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <h3>E-mail RH</h3>
+                    <p>rh@hospitalsantacasa.com.br</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-comments"></i>
+                    <h3>Ouvidoria</h3>
+                    <p>ouvidoria@hospitalsantacasa.com.br</p>
+                </div>
+            </div>
+
+            <div class="formulario">
+                <h3>FALE CONOSCO</h3>
+                <form>
+                    <div class="campo">
+                        <label>Nome</label>
+                        <input type="text" placeholder="Digite seu nome" required>
+                    </div>
+                    <div class="campo">
+                        <label>E-mail</label>
+                        <input type="email" placeholder="Digite seu e-mail" required>
+                    </div>
+                    <div class="campo">
+                        <label>Telefone</label>
+                        <input type="tel" placeholder="(00) 00000-0000">
+                    </div>
+                    <div class="campo">
+                        <label>Mensagem</label>
+                        <textarea rows="6" placeholder="Escreva sua mensagem..." required></textarea>
+                    </div>
+                    <button type="submit">Enviar Mensagem</button>
+                </form>
+
+                <div class="aviso-acessibilidade">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <div>
+                        <strong>Atendimento Inclusivo</strong>
+                        <p>Disponibilizamos atendimento acessível para pessoas com deficiência auditiva ou de fala.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="visitas">
+    <div class="container">
+        <h2>Horário de Visita</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>UTI</h3>
+                <p>14h às 15h</p>
+            </div>
+            <div class="card">
+                <h3>Internação</h3>
+                <p>10h às 12h e 14h às 20h</p>
+            </div>
+            <div class="card">
+                <h3>Pediatria</h3>
+                <p>Acompanhante 24 horas</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="doacoes">
+    <div class="container">
+        <h2>Doações</h2>
+        <div class="card">
+            <p>Espaço reservado para orientar contribuições e doações.</p>
+        </div>
+    </div>
+</section>
+
+<section class="vestimenta">
+    <div class="container">
+        <h2>Regulamento de Vestimenta Hospitalar</h2>
+        <div class="cards">
+            <div class="card">✔ Roupas confortáveis</div>
+            <div class="card">✔ Documento de identificação</div>
+            <div class="card">✔ Calçado antiderrapante</div>
+            <div class="card">❌ Bebidas alcoólicas</div>
+            <div class="card">❌ Cigarros</div>
+        </div>
+    </div>
+</section>
+
+<section class="orientacoes">
+    <div class="container">
+        <h2>Orientações Gerais às Visitas</h2>
+        <div class="card">
+            <p>• Higienize as mãos antes e depois da visita.<br><br>• Respeite os horários estabelecidos.<br><br>• Evite visitas em caso de gripe ou sintomas respiratórios.<br><br>• Siga as orientações da equipe médica e de enfermagem.</p>
+        </div>
+    </div>
+</section>
+
+<section class="ajudar">
+    <div class="container">
+        <h2>Como Ajudar</h2>
+        <p>Sua contribuição ajuda a Santa Casa de Misericórdia de Bom Jardim a continuar cuidando de vidas.</p>
+        <br>
+        <a href="#" class="botao2">Saiba Como Doar</a>
+    </div>
+</section>
+
+<section class="portal">
+    <div class="container">
+        <h2>Portal de Transparência</h2>
+        <div class="cards">
+            <div class="card"><h3>Prestação de Contas</h3></div>
+            <div class="card"><h3>Convênios</h3></div>
+            <div class="card"><h3>Licitações</h3></div>
+            <div class="card"><h3>Relatórios Financeiros</h3></div>
+        </div>
+    </div>
+</section>
+
+<section class="feedbacks">
+    <div class="container">
+        <h2>Feedbacks Fechados</h2>
+        <div class="cards">
+            <div class="card"><p>★★★★★</p><p>Excelente atendimento e profissionais muito atenciosos.</p></div>
+            <div class="card"><p>★★★★★</p><p>Equipe extremamente humana e organizada.</p></div>
+            <div class="card"><p>★★★★★</p><p>Ambiente limpo e atendimento rápido.</p></div>
+        </div>
+    </div>
+</section>
+
+<div class="botoes-flutuantes">
+    <a href="https://wa.me/5522988438053" class="botao-flutuante whatsapp" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <a href="#" class="botao-flutuante chat" id="abrirChat">
+        <i class="fa-solid fa-comments"></i>
+    </a>
+</div>
+
+<div class="chat-popup" id="chatPopup">
+    <div class="chat-header">
+        Atendimento Online
+        <span onclick="fecharChat()">✕</span>
+    </div>
+    <div class="chat-body">
+        <div class="mensagem">
+            Olá! Seja bem-vindo à Santa Casa de Misericórdia de Bom Jardim.
+            <br><br>
+            Nosso atendimento está disponível por texto para todos os pacientes, incluindo pessoas com deficiência auditiva ou de fala.
+        </div>
+    </div>
+    <div class="chat-footer">
+        <input type="text" placeholder="Digite sua mensagem...">
+        <button>Enviar</button>
+    </div>
+</div>
+
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <h3>Hospital Santa Casa de Misericórdia de Bom Jardim</h3>
+        <p>Rua João Figueira Rodrigues, 36</p>
+        <p>Centro - Bom Jardim - RJ</p>
+        <p>CEP: 28660-000</p>
+        <br>
+        <p>☎ (22) 2032-0222</p>
+        <p>📱 WhatsApp: (22) 98843-8053</p>
+        <p>✉ contato@hospitalsantacasa.com.br</p>
+        <br>
+        <p>© 2026 Hospital Santa Casa de Misericórdia de Bom Jardim - Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+new window.VLibras.Widget('https://vlibras.gov.br/app');
+
+const popup = document.getElementById("chatPopup");
+
+document.getElementById("abrirChat").addEventListener("click", function(e){
+    e.preventDefault();
+    popup.style.display = popup.style.display === "flex" ? "none" : "flex";
+});
+
+function fecharChat(){
+    popup.style.display = "none";
+}
+</script>
+</body>
+</html>
